@@ -1,9 +1,7 @@
 import { SET_USER_VALUE } from '../actions';
 
 const initialUserState = {
-  user: {
-    email: '',
-  },
+  email: '',
 };
 
 export default function user(state = initialUserState, { type, payload }) {

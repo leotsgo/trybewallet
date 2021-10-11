@@ -32,7 +32,8 @@ class Login extends React.Component {
   render() {
     const { email, password, redirect } = this.state;
     const MIN_PASSWORD_LENGTH = 6;
-    const regexEmail = /\S+@\S+\.\S+/;
+    // https://stackoverflow.com/questions/742451/what-is-the-simplest-regular-expression-to-validate-emails-to-not-accept-them-bl
+    const regexEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
     const validEmail = regexEmail.test(email);
 
     if (redirect) return <Redirect to="/carteira" />;

@@ -1,10 +1,8 @@
 import { SET_WALLET_VALUE } from '../actions';
 
 const initialWalletValue = {
-  wallet: {
-    currencies: [],
-    expenses: [],
-  },
+  currencies: [],
+  expenses: [],
 };
 
 export default function wallet(state = initialWalletValue, { type, payload }) {
