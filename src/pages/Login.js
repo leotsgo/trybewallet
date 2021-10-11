@@ -1,12 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
+import { setUserValue } from '../actions';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       email: '',
       password: '',
+      redirect: false,
     };
   }
 
@@ -16,13 +22,23 @@ class Login extends React.Component {
     });
   }
 
+  handleClick() {
+    const { dispatchPayload } = this.props;
+    const { email } = this.state;
+    dispatchPayload(email);
+    this.setState({ redirect: true });
+  }
+
   render() {
-    const { email, password } = this.state;
+    const { email, password, redirect } = this.state;
     const MIN_PASSWORD_LENGTH = 6;
     const regexEmail = /\S+@\S+\.\S+/;
     const validEmail = regexEmail.test(email);
+
+    if (redirect) return <Redirect to="/carteira" />;
+
     return (
-      <form>
+      <fieldset>
         <label htmlFor="email">
           Email:
           { ' ' }
@@ -50,12 +66,22 @@ class Login extends React.Component {
         <button
           type="button"
           disabled={ !(password.length >= MIN_PASSWORD_LENGTH && validEmail) }
+          onClick={ this.handleClick }
         >
           Entrar
         </button>
-      </form>
+      </fieldset>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  dispatchPayload: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    dispatchPayload: (payload) => dispatch(setUserValue(payload)),
+  });
+
+export default connect(null, mapDispatchToProps)(Login);
