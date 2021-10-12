@@ -1,5 +1,8 @@
 export const SET_USER_VALUE = 'SET_USER_VALUE';
 export const SET_WALLET_VALUE = 'SET_WALLET_VALUE';
+export const GET_CURRENCIES = 'GET_CURRENCIES';
+export const IS_FETCHING = 'IS_FETCHING';
+export const FAILED_REQUEST = 'FAILED_REQUEST';
 
 export const setUserValue = (payload) => (
   {
@@ -14,3 +17,33 @@ export const setWalletValue = (payload) => (
     payload,
   }
 );
+
+export const getCurrencies = (payload) => (
+  {
+    type: GET_CURRENCIES,
+    payload,
+  }
+);
+
+export const isFetching = () => (
+  {
+    type: IS_FETCHING,
+  }
+);
+
+export const failedRequest = (error) => (
+  { type: FAILED_REQUEST, payload: error }
+);
+
+export function fetchCurrencies() {
+  return async (dispatch) => {
+    dispatch(isFetching());
+    try {
+      const data = await (await fetch('https://economia.awesomeapi.com.br/json/all')).json();
+      const currencies = Object.keys(data).filter((crr) => crr !== 'USDT');
+      dispatch(getCurrencies(currencies));
+    } catch (error) {
+      dispatch(failedRequest(error));
+    }
+  };
+}
