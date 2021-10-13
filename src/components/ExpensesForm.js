@@ -41,8 +41,10 @@ ExpensesForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currencies: state.wallet.currencies }
+const mapStateToProps = (state) => (
+  {
+    currencies: state.wallet.currencies,
+  }
 );
 
 export default connect(mapStateToProps)(ExpensesForm);
