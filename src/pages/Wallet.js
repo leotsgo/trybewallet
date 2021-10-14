@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import ExpensesForm from '../components/ExpensesForm';
 import { fetchCurrencies } from '../actions';
-import Loading from '../components/Loading';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -14,11 +13,10 @@ class Wallet extends React.Component {
 
   render() {
     const { loading } = this.props;
-    if (loading) return <Loading />;
     return (
       <>
         <Header />
-        <ExpensesForm />
+        { !loading && <ExpensesForm /> }
       </>
     );
   }

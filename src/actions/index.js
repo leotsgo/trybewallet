@@ -3,6 +3,7 @@ export const SET_WALLET_VALUE = 'SET_WALLET_VALUE';
 export const GET_CURRENCIES = 'GET_CURRENCIES';
 export const IS_FETCHING = 'IS_FETCHING';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
+export const ADD_EXPENSE = 'ADD_EXPENSE';
 
 export const setUserValue = (payload) => (
   {
@@ -33,6 +34,13 @@ export const isFetching = () => (
 
 export const failedRequest = (error) => (
   { type: FAILED_REQUEST, payload: error }
+);
+
+export const addExpense = (payload) => (
+  {
+    type: ADD_EXPENSE,
+    payload,
+  }
 );
 
 export function fetchCurrencies() {

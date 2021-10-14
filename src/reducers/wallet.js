@@ -2,7 +2,8 @@ import {
   SET_WALLET_VALUE,
   GET_CURRENCIES,
   IS_FETCHING,
-  FAILED_REQUEST } from '../actions';
+  FAILED_REQUEST,
+  ADD_EXPENSE } from '../actions';
 
 const initialWalletValue = {
   currencies: [],
@@ -20,6 +21,9 @@ export default function wallet(state = initialWalletValue, { type, payload }) {
     return { ...state, loading: true };
   case FAILED_REQUEST:
     return { ...state, error: payload };
+  case ADD_EXPENSE:
+    payload.id = state.expenses.length;
+    return { ...state, expenses: [...state.expenses, payload] };
   default:
     return state;
   }
