@@ -1,5 +1,4 @@
 export const SET_USER_VALUE = 'SET_USER_VALUE';
-export const SET_WALLET_VALUE = 'SET_WALLET_VALUE';
 export const GET_CURRENCIES = 'GET_CURRENCIES';
 export const IS_FETCHING = 'IS_FETCHING';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
@@ -8,13 +7,6 @@ export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const setUserValue = (payload) => (
   {
     type: SET_USER_VALUE,
-    payload,
-  }
-);
-
-export const setWalletValue = (payload) => (
-  {
-    type: SET_WALLET_VALUE,
     payload,
   }
 );

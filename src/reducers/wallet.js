@@ -1,5 +1,4 @@
 import {
-  SET_WALLET_VALUE,
   GET_CURRENCIES,
   IS_FETCHING,
   FAILED_REQUEST,
@@ -13,8 +12,6 @@ const initialWalletValue = {
 
 export default function wallet(state = initialWalletValue, { type, payload }) {
   switch (type) {
-  case SET_WALLET_VALUE:
-    return { ...state, wallet: payload };
   case GET_CURRENCIES:
     return { ...state, currencies: payload, loading: false };
   case IS_FETCHING:
@@ -22,7 +19,7 @@ export default function wallet(state = initialWalletValue, { type, payload }) {
   case FAILED_REQUEST:
     return { ...state, error: payload };
   case ADD_EXPENSE:
-    payload.id = state.expenses.length;
+    payload = { id: state.expenses.length, ...payload };
     return { ...state, expenses: [...state.expenses, payload] };
   default:
     return state;

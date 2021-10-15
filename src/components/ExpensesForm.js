@@ -37,7 +37,12 @@ class ExpensesForm extends React.Component {
     const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
       <form>
-        <Input label="Valor:" id="value" type="number" onChange={ this.handleChange } />
+        <Input
+          label="Valor:"
+          id="value"
+          type="number"
+          onChange={ this.handleChange }
+        />
 
         <Input
           label="Descrição:"
