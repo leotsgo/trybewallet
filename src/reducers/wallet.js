@@ -3,12 +3,16 @@ import {
   IS_FETCHING,
   FAILED_REQUEST,
   ADD_EXPENSE,
-  REMOVE_EXPENSE } from '../actions';
+  REMOVE_EXPENSE,
+  EDIT_EXPENSE,
+  SAVE_EDITION } from '../actions';
 
 const initialWalletValue = {
   currencies: [],
   expenses: [],
   loading: true,
+  editing: false,
+  expenseToEdit: '',
 };
 
 export default function wallet(state = initialWalletValue, { type, payload }) {
@@ -26,6 +30,15 @@ export default function wallet(state = initialWalletValue, { type, payload }) {
     state.expenses = state.expenses.filter((expense) => expense.id !== payload);
     state.expenses = state.expenses
       .map((expense) => ({ id: state.expenses.indexOf(expense), ...expense }));
+    return { ...state };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      editing: true,
+      expenseToEdit: state.expenses.find((expense) => expense.id === payload) };
+  case SAVE_EDITION:
+    state.expenses[payload.id] = payload;
+    state.editing = false;
     return { ...state };
   default:
     return state;

@@ -4,6 +4,8 @@ export const IS_FETCHING = 'IS_FETCHING';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const SAVE_EDITION = 'SAVE_EDITION';
 
 export const setUserValue = (payload) => (
   {
@@ -39,6 +41,20 @@ export const addExpense = (payload) => (
 export const removeExpense = (payload) => (
   {
     type: REMOVE_EXPENSE,
+    payload,
+  }
+);
+
+export const editExpense = (payload) => (
+  {
+    type: EDIT_EXPENSE,
+    payload,
+  }
+);
+
+export const saveEdition = (payload) => (
+  {
+    type: SAVE_EDITION,
     payload,
   }
 );
