@@ -18,10 +18,10 @@ const initialWalletValue = {
 
 function sum(expenses) {
   return expenses.reduce((acc, crr) => {
-    const usdValue = Math.round(Number(crr.value)
+    const convertedValue = Math.round(Number(crr.value)
       * Number(crr.exchangeRates[crr.currency].ask) * 100) / 100;
 
-    acc += usdValue;
+    acc += convertedValue;
     return acc;
   }, 0);
 }
