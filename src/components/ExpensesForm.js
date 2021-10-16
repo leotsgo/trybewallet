@@ -33,6 +33,7 @@ class ExpensesForm extends React.Component {
 
   render() {
     const { currencies } = this.props;
+    const { value, description, currency, method, tag } = this.state;
     const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
@@ -42,6 +43,7 @@ class ExpensesForm extends React.Component {
           id="value"
           type="number"
           onChange={ this.handleChange }
+          value={ value }
         />
 
         <Input
@@ -49,6 +51,7 @@ class ExpensesForm extends React.Component {
           id="description"
           type="text"
           onChange={ this.handleChange }
+          value={ description }
         />
 
         <Select
@@ -56,6 +59,7 @@ class ExpensesForm extends React.Component {
           id="currency"
           options={ currencies }
           onChange={ this.handleChange }
+          value={ currency }
         />
 
         <Select
@@ -63,6 +67,7 @@ class ExpensesForm extends React.Component {
           id="method"
           options={ paymentMethods }
           onChange={ this.handleChange }
+          value={ method }
         />
 
         <Select
@@ -70,8 +75,8 @@ class ExpensesForm extends React.Component {
           id="tag"
           options={ tags }
           onChange={ this.handleChange }
+          value={ tag }
         />
-
         <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
       </form>
     );
