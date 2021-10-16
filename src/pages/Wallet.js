@@ -20,17 +20,24 @@ class Wallet extends React.Component {
         <Header />
         { !loading && !editing && <ExpensesForm /> }
         { !loading && editing && <EditForm /> }
-        { expenses.length > 0 && <ExpensesTable /> }
+        <main>
+          { expenses.length > 0 && <ExpensesTable /> }
+        </main>
       </>
     );
   }
 }
 
 Wallet.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   loadCurrencies: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
-  editing: PropTypes.bool.isRequired,
+  editing: PropTypes.bool,
+};
+
+Wallet.defaultProps = {
+  loading: false,
+  editing: false,
 };
 
 const mapStateToProps = (state) => (

@@ -19,7 +19,11 @@ class Header extends React.Component {
 
 Header.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
-  total: PropTypes.arrayOf(PropTypes.any).isRequired,
+  total: PropTypes.number,
+};
+
+Header.defaultProps = {
+  total: 0,
 };
 
 const mapStateToProps = (state) => (
