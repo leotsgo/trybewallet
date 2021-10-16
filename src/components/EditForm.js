@@ -5,6 +5,9 @@ import Input from './Input';
 import Select from './Select';
 import { saveEdition } from '../actions';
 
+const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+
 class ExpensesForm extends React.Component {
   constructor(props) {
     super(props);
@@ -45,19 +48,14 @@ class ExpensesForm extends React.Component {
     this.setState({ [id]: value });
   }
 
-  async handleClick() {
+  handleClick() {
     const { saveExpense } = this.props;
-    // const exchangeRates = await (await fetch('https://economia.awesomeapi.com.br/json/all')).json();
-    // this.setState({ exchangeRates });
-    // addNewExpense(this.state);
     saveExpense(this.state);
   }
 
   render() {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
-    const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-    const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
       <form>
         <Input
@@ -67,7 +65,6 @@ class ExpensesForm extends React.Component {
           onChange={ this.handleChange }
           value={ value }
         />
-
         <Input
           label="Descrição:"
           id="description"
@@ -75,7 +72,6 @@ class ExpensesForm extends React.Component {
           onChange={ this.handleChange }
           value={ description }
         />
-
         <Select
           label="Moeda:"
           id="currency"
@@ -83,7 +79,6 @@ class ExpensesForm extends React.Component {
           onChange={ this.handleChange }
           value={ currency }
         />
-
         <Select
           label="Método de pagamento:"
           id="method"
@@ -91,7 +86,6 @@ class ExpensesForm extends React.Component {
           onChange={ this.handleChange }
           value={ method }
         />
-
         <Select
           label="Tag:"
           id="tag"
@@ -99,7 +93,13 @@ class ExpensesForm extends React.Component {
           onChange={ this.handleChange }
           value={ tag }
         />
-        <button type="button" onClick={ this.handleClick }>Editar despesa</button>
+        <button
+          data-testid="edit-btn"
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Editar despesa
+        </button>
       </form>
     );
   }
