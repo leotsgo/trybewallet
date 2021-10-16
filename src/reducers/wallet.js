@@ -2,7 +2,8 @@ import {
   GET_CURRENCIES,
   IS_FETCHING,
   FAILED_REQUEST,
-  ADD_EXPENSE } from '../actions';
+  ADD_EXPENSE,
+  REMOVE_EXPENSE } from '../actions';
 
 const initialWalletValue = {
   currencies: [],
@@ -21,6 +22,11 @@ export default function wallet(state = initialWalletValue, { type, payload }) {
   case ADD_EXPENSE:
     payload = { id: state.expenses.length, ...payload };
     return { ...state, expenses: [...state.expenses, payload] };
+  case REMOVE_EXPENSE:
+    state.expenses = state.expenses.filter((expense) => expense.id !== payload);
+    state.expenses = state.expenses
+      .map((expense) => ({ id: state.expenses.indexOf(expense), ...expense }));
+    return { ...state };
   default:
     return state;
   }
