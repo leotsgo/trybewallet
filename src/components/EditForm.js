@@ -8,7 +8,7 @@ import { saveEdition } from '../actions';
 const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
-class ExpensesForm extends React.Component {
+class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -105,7 +105,7 @@ class ExpensesForm extends React.Component {
   }
 }
 
-ExpensesForm.propTypes = {
+EditForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.any).isRequired,
   saveExpense: PropTypes.func.isRequired,
   expenseToEdit: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -124,4 +124,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);
